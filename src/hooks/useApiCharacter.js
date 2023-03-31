@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export function useApi() {
+export function useApiCharacter() {
   const searchApi = async () => {
-    let url = "https://rickandmortyapi.com/api/";
+    let url = "https://rickandmortyapi.com/api/character";
 
     try {
       const response = await axios.get(url);
