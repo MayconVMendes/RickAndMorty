@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export function useApi() {
-  const searchApi = async () => {
-    let url = "https://rickandmortyapi.com/api/";
+export function useSearchName() {
+  const searchName = async (consulta) => {
+    let url = `https://rickandmortyapi.com/api/character/?name=${consulta}`;
 
     try {
       const response = await axios.get(url);
@@ -14,6 +14,6 @@ export function useApi() {
   };
 
   return {
-    searchApi,
+    searchName,
   };
 }
