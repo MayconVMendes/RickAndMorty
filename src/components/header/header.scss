@@ -17,6 +17,27 @@
     align-items: center;
     width: 100%;
 
+    .boxSeach {
+      display: flex;
+
+      input {
+        border-radius: 15px 0 0 15px;
+        border: 2px solid #000;
+        border-right: none;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+      }
+
+      button {
+        width: auto;
+        height: 40px;
+        border-radius: 0 15px 15px 0;
+        border: 2px solid #000;
+        background-color: #fff;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+      }
+    }
+
     .brand-name {
       display: flex;
 

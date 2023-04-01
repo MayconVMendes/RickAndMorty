@@ -7,13 +7,17 @@ export default function Characters() {
   const { searchApi } = useApiCharacter();
   const [data, setData] = useState(null);
   const [block, setBlock] = useState(false);
-  const [isSearch, setisSearch] = useState(false);
+  const [isSearch, setIsSearch] = useState(false);
+  const [isButtonPrev, setIsButtonPrev] = useState(null);
+  const [isButtonNext, setIsButtonNext] = useState(null);
   const state = useSelector((state) => state?.search);
 
   useEffect(() => {
     if (block === false) {
       const search = async () => {
-        const result = await searchApi();
+        const result = await searchApi(
+          "https://rickandmortyapi.com/api/character"
+        );
         setData(result);
       };
       search();
@@ -21,9 +25,21 @@ export default function Characters() {
     }
 
     if (state.isResult) {
-      setisSearch(true);
+      setIsSearch(true);
     }
-  }, [block, searchApi, state]);
+
+    if (data?.info?.prev == null) {
+      setIsButtonPrev(true);
+    } else {
+      setIsButtonPrev(false);
+    }
+
+    if (data?.info?.next == null) {
+      setIsButtonNext(true);
+    } else {
+      setIsButtonNext(false);
+    }
+  }, [block, searchApi, state, data]);
 
   return (
     <section>
@@ -82,6 +98,39 @@ export default function Characters() {
             })}
           </>
         )}
+      </div>
+      <div className="buttons">
+        <button
+          onClick={() => {
+            if (data?.info?.prev) {
+              const search = async () => {
+                const result = await searchApi(data?.info?.prev);
+                setData(result);
+              };
+              search();
+            }
+          }}
+          className={isButtonPrev ? "disable" : ""}
+          disabled={isButtonPrev}
+        >
+          Voltar
+        </button>
+
+        <button
+          onClick={() => {
+            if (data?.info?.next) {
+              const search = async () => {
+                const result = await searchApi(data?.info?.next);
+                setData(result);
+              };
+              search();
+            }
+          }}
+          className={isButtonNext ? "disable" : ""}
+          disabled={isButtonNext}
+        >
+          Avançar
+        </button>
       </div>
     </section>
   );
