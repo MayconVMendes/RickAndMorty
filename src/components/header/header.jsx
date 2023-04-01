@@ -29,7 +29,7 @@ export default function Header() {
           <img className="logoImg" src={RickAndMorty} alt="Rick And Morty" />
         </Link>
 
-        <div>
+        <div className="boxSeach">
           <input
             type="text"
             value={consulta}
